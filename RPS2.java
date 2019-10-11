@@ -1,5 +1,3 @@
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,7 +20,7 @@ import javafx.stage.Stage;
 public class RPS2 extends Application
 {
     // The Rock-Paper-Scissors Match
-    // private RPSMatch rpsMatch;
+    private RPSMatch2 rpsMatch;
     
     // Labels for displaying the win counts
     private Label lblPlayerWins =       new Label("Human Wins");
@@ -41,7 +39,7 @@ public class RPS2 extends Application
     public void start(Stage stage) throws Exception
     {
         // Start the match
-        // rpsMatch = new RPSMatch();
+        rpsMatch = new RPSMatch2();
         
         // Create a Button or any control item
         Button btnChooseRock =     new Button("Rock");
@@ -93,14 +91,6 @@ public class RPS2 extends Application
         grid.add(matchStatusLabels, 1, 2);
         grid.add(matchStatus, 2, 2);
 
-        /* 
-        // Add the button and label into the pane
-        pane.add(btnChooseRock, 0, 0);
-        pane.add(btnChoosePaper, 1, 0);
-        pane.add(btnChooseScissors, 2, 0);
-        pane.add(lblStatus, 1, 1);
-        
-        */
        
         //set an action on the button using method reference
         btnChooseRock.setOnAction(this::rockClick);
@@ -123,9 +113,11 @@ public class RPS2 extends Application
      */
     private void rockClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("rock");
+        rpsMatch.setHumanPlay(RPSMatch.ROCK);
         lblStatus1.setText ("You have chosen Rock      ");
-        
+        rpsMatch.setComputerSign();
+        rpsMatch.getResult();
+        lblStatus2.setText("Computer chose: " + rpsMatch.getComputerText());        
         updateScores();
     }
     
@@ -135,31 +127,33 @@ public class RPS2 extends Application
      */
     private void paperClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("paper");
+        rpsMatch.setHumanPlay(RPSMatch.PAPER);
         lblStatus1.setText ("You have chosen Paper     ");
-               
+        rpsMatch.setComputerSign();
+        rpsMatch.getResult();
+        lblStatus2.setText("Computer chose: " + rpsMatch.getComputerText());               
         updateScores();
-
     }
 
     /**
-     * This will be executed when the player clicks the "Rock" button
+     * This will be executed when the player clicks the "Scissors" button
      * 
      */
     private void scissorsClick(ActionEvent event)
     {
-        //rpsMatch.setHumanPlay("scissors");
+        rpsMatch.setHumanPlay(RPSMatch.SCISSORS);
         lblStatus1.setText ("You have chosen Scissors  ");
-
+        rpsMatch.setComputerSign();
+        rpsMatch.getResult();
+        lblStatus2.setText("Computer chose: " + rpsMatch.getComputerText());
         updateScores();
-
     }
 
     private void updateScores()
     {
-    //    lblPlayerWinCount.setText("" + rpsMatch.getHumanWins());
-    //    lblComputerWinCount.setText("" + rpsMatch.getComputerWins());
-    //    lblTieCount.setText("" + rpsMatch.getTies());
+        lblPlayerWinCount.setText("" + rpsMatch.getHumanWins());
+        lblComputerWinCount.setText("" + rpsMatch.getComputerWins());
+        lblTieCount.setText("" + rpsMatch.getTies());
 
     }
     
