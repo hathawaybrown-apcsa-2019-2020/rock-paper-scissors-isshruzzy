@@ -3,8 +3,8 @@ Nice interface, smooth operation.
 
 One formatting piece: in PRSMatch2, the setComputerSign() method,
 you have nested if statements.  The statements inside the "cheat" 
-branch should all be indented.  Then the random-selection (not cheat)
-branch should stay exactly where it is, and it will be easy to 
+branch (lines 91-101) should all be indented.  Then the random-selection 
+(not cheat) branch should stay exactly where it is, and it will be easy to 
 see that it's a different branch entirely.
 (-0.2 on the "Style" category).
 
